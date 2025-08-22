@@ -1,0 +1,9 @@
+Model Name,Species,Marker,NN type,NN type alias,Version,Family,Target,Modality,Dims,Functionality,Trained on,Good for, NOT good for,Channels expected,Useful docs,Comments
+midap_stardist_2D_paper_dsb2018,various,general model,StarDistSegmentation,StarDistSegmentationJupyter,-,StarDist,nuclei,fluorescence,1D,clas/den/seg,DSB2018 nuclei,star-convex nuclei,blah,1,github.com/stardist/stardist#pretrained-models, —
+midap_stardist_2D_versatile_fluo,various,general model,StarDistSegmentation,StarDistSegmentationJupyter,-,StarDist,nuclei,fluorescence,1D,clas/den/seg,StarDist 2D versatile (fluo),star-convex nuclei,blah,1,github.com/stardist/stardist#pretrained-models,—
+model_weights_nuclei,OmniPose,omni,NaN,OmniSegmentationJupyter,-,,nuclei,,1D,clas/den/seg,,,,1,,—
+model_weights_bact_fluor_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,-,Omnipose,nuclei,fluorescence,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
+model_weights_bact_phase_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,-,Omnipose,bacteria,phase/brightfield,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
+model_weights_worm_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,-,Omnipose,worm,,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
+model_weights_worm_bact_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,-,Omnipose,bacteria,,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
+model_weights_cpsam,Cellpose-SAM,cellpose-sam,NaN,CellposeSegmentationJupyter,-,Cellpose+SAM,,,2D,clas/den/seg,cellpose+sam generalist,general cell bodies,blahblah,2,github.com/mouseland/cellpose,—

@@ -3,6 +3,9 @@
 - v02
 + [X] Chose Solution 1 (at least for now)
 + [X] Remove old selection process. Reshuffle code sections
++ [X] New tweaked comparison function, based on the one from midap
++ [ ] separate new functions (comparison plotting, model listing) from the jupyter notebook itself. --> Should they live in the same user-accesible and editable repo, or hide it to avoid easy/accidental editing from users?
+      
 
 - v01
 + [X] Model specs are now saved and read from an CSV file. (Assuming that the midap model list is static and not being updated.) CSV is loaded from same git repo as notebook at run time.

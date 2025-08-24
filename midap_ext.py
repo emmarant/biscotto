@@ -7,7 +7,7 @@ from google.colab import data_table
 from midap.midap_jupyter.segmentation_jupyter import SegmentationJupyter
 
 
-def select_seg_models(self,df):
+def select_seg_models(sj,df):
     """
     Display searchable table with available models. 
     Table contents are read from a CSV file and passed into this function as a Pandas dataframe.

@@ -217,14 +217,13 @@ def compare_and_plot_segmentations(sj):
         )
         display(sj.output_seg_comp)
 
-def patch_SJ_class():
-    SegmentationJupyter.compare_and_plot_segmentations = compare_and_plot_segmentations
 
 
 # --- PATCHERS ---------------------------------------------------------------------
 
 def patch_SJ_class():
     """Attach extension methods to the SegmentationJupyter class (affects all instances)."""
+    SegmentationJupyter.select_seg_models = select_seg_models
     SegmentationJupyter.compare_and_plot_segmentations = compare_and_plot_segmentations
 
 
@@ -241,6 +240,7 @@ except Exception as e:
 
 
 __all__ = [
+    "select_seg_models",
     "compare_and_plot_segmentations",
     "patch_SJ_class",
 ]

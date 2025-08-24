@@ -1,3 +1,6 @@
+import numpy as np
+from midap.midap_jupyter.segmentation_jupyter import SegmentationJupyter
+
 def compare_and_plot_segmentations(sj):
         """
         Visualises:
@@ -125,3 +128,6 @@ def compare_and_plot_segmentations(sj):
             ),
         )
         display(sj.output_seg_comp)
+
+def patch_SJ_class():
+    SegmentationJupyter.compare_and_draw_segmentations = compare_and_draw_segmentations

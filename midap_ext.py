@@ -18,9 +18,9 @@ def select_seg_models(df):
     OUTPUT: arrays of segmentation intances - masks - of each chosen model and for each selected image.
     """
     sj.get_segmentation_models()
-    display(data_table.DataTable(df_model_interact, include_index=False, num_rows_per_page=10))
+    display(data_table.DataTable(df, include_index=False, num_rows_per_page=10))
 
-    all_names = df_model_interact["Model Name"].astype(str).tolist()
+    all_names = df["Model Name"].astype(str).tolist()
 
     search = widgets.Text(placeholder="filter models with ... (substring match)", layout=Layout(width="40%"))
     sel    = widgets.SelectMultiple(options=sorted(all_names), rows=12, description="Select")

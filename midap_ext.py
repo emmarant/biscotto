@@ -1,4 +1,4 @@
-import numpy as np
+,import numpy as np
 import ipywidgets as widgets
 from ipywidgets import interactive
 import matplotlib.pyplot as plt
@@ -7,7 +7,7 @@ from google.colab import data_table
 from midap.midap_jupyter.segmentation_jupyter import SegmentationJupyter
 
 
-def select_seg_models(df):
+def select_seg_models(self,df):
     """
     Display searchable table with available models. 
     Table contents are read from a CSV file and passed into this function as a Pandas dataframe.

@@ -1,4 +1,7 @@
 import numpy as np
+import ipywidgets as widgets
+from ipywidgets import interactive
+import matplotlib.pyplot as plt
 from midap.midap_jupyter.segmentation_jupyter import SegmentationJupyter
 
 def compare_and_plot_segmentations(sj):
@@ -12,8 +15,7 @@ def compare_and_plot_segmentations(sj):
           6. bar-plot of the per-model mean semantic disagreement scores
              with standard deviation as error bars.
         """
-        from ipywidgets import interactive
-        import numpy as np
+
         # ----------------------------------------------------------------
         # prepare bar-plot data (only once)
         # ----------------------------------------------------------------

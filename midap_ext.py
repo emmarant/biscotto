@@ -133,3 +133,30 @@ def compare_and_plot_segmentations(sj):
 
 def patch_SJ_class():
     SegmentationJupyter.compare_and_plot_segmentations = compare_and_plot_segmentations
+
+
+# --- PATCHERS ---------------------------------------------------------------------
+
+def patch_SJ_class():
+    """Attach extension methods to the SegmentationJupyter class (affects all instances)."""
+    SegmentationJupyter.compare_and_plot_segmentations = compare_and_plot_segmentations
+
+
+
+
+# --- AUTO-PATCH ON IMPORT ---------------------------------------------------------
+
+try:
+    patch_SJ_class()  # make methods available as sj.draw_instance_outlines(), sj.compare_and_plot_segmentations()
+    # Optional: print once to confirm (comment out if you prefer silence)
+    print("[midap_ext] Patched SegmentationJupyter with extra methods.")
+except Exception as e:
+    # Fail gracefully if midap isn't available yet; you can call patch_SJ_class() later.
+    print(f"[midap_ext] Warning: could not patch class on import: {e}")
+    pass
+
+
+__all__ = [
+    "compare_and_plot_segmentations",
+    "patch_SJ_class",
+]

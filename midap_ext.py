@@ -130,4 +130,4 @@ def compare_and_plot_segmentations(sj):
         display(sj.output_seg_comp)
 
 def patch_SJ_class():
-    SegmentationJupyter.compare_and_plot_segmentations = compare_and_draw_segmentations
+    SegmentationJupyter.compare_and_plot_segmentations = compare_and_plot_segmentations

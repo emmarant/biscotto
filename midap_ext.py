@@ -7,7 +7,7 @@ from midap.midap_jupyter.segmentation_jupyter import SegmentationJupyter
 def draw_seg_inst_outlines(ax, inst_labels, color="yellow", lw=1.5):
         inst = np.asarray(inst_labels)
         if inst.ndim == 3 and inst.shape[-1] == 2:  
-        inst = inst[..., 0]
+            inst = inst[..., 0]
         labels = np.unique(inst)
         labels = labels[labels != 0]  
 

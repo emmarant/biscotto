@@ -4,8 +4,21 @@ from ipywidgets import interactive
 import matplotlib.pyplot as plt
 from midap.midap_jupyter.segmentation_jupyter import SegmentationJupyter
 
+def draw_seg_inst_outlines(ax, inst_labels, color="yellow", lw=1.5):
+        inst = np.asarray(inst_labels)
+        if inst.ndim == 3 and inst.shape[-1] == 2:  
+        inst = inst[..., 0]
+        labels = np.unique(inst)
+        labels = labels[labels != 0]  
+
+        for lab in labels:
+            ax.contour(inst == lab, levels=[0.5], colors=[color], linewidths=lw)
+
+
 def compare_and_plot_segmentations(sj):
         """
+        Modification of MIDAP's sj.compare_segmentations() method: includes contour and overlay plots.
+        Also minor changes in plot organization.
         Visualises:
           1. raw image
           2. instance segmentation of model-1
@@ -22,16 +35,6 @@ def compare_and_plot_segmentations(sj):
         if not hasattr(sj, "model_diff_scores"):
             sj.model_diff_scores = sj.compute_model_diff_scores()
 
-        def draw_seg_inst_outlines(ax, inst_labels, color="yellow", lw=1.5):
-            #import numpy as np, matplotlib.pyplot as plt
-            inst = np.asarray(inst_labels)
-            if inst.ndim == 3 and inst.shape[-1] == 2:  
-                inst = inst[..., 0]
-            labels = np.unique(inst)
-            labels = labels[labels != 0]  
-
-            for lab in labels:
-                ax.contour(inst == lab, levels=[0.5], colors=[color], linewidths=lw)
 
         def f(a, b, c):
             fig = plt.figure(figsize=(20, 22))
@@ -148,10 +151,8 @@ def patch_SJ_class():
 
 try:
     patch_SJ_class()  # make methods available as sj.draw_instance_outlines(), sj.compare_and_plot_segmentations()
-    # Optional: print once to confirm (comment out if you prefer silence)
     print("[midap_ext] Patched SegmentationJupyter with extra methods.")
 except Exception as e:
-    # Fail gracefully if midap isn't available yet; you can call patch_SJ_class() later.
     print(f"[midap_ext] Warning: could not patch class on import: {e}")
     pass
 

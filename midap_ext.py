@@ -2,6 +2,8 @@ import numpy as np
 import ipywidgets as widgets
 from ipywidgets import interactive
 import matplotlib.pyplot as plt
+from IPython.display import display, clear_output
+from google.colab import data_table
 from midap.midap_jupyter.segmentation_jupyter import SegmentationJupyter
 
 

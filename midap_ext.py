@@ -1,6 +1,6 @@
 import numpy as np
 import ipywidgets as widgets
-from ipywidgets import interactive
+from ipywidgets import interactive,Layout
 import matplotlib.pyplot as plt
 from IPython.display import display, clear_output
 from google.colab import data_table
@@ -54,7 +54,7 @@ def select_seg_models(self,df):
         selected = set(sel.value)
 
         self.model_checkboxes = {
-            name: widgets.Checkbox(value=(name in selected), indent=False, layout=Layout(width="1px", height="1px"))
+            name: widgets.Checkbox(value=(name in selected), indent=False, layout=widjets.Layout(width="1px", height="1px"))
             for name in all_names
         }
 

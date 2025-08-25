@@ -7,7 +7,7 @@ from google.colab import data_table
 from midap.midap_jupyter.segmentation_jupyter import SegmentationJupyter
 
 
-def select_seg_models(sj,df):
+def select_seg_models(self,df):
     """
     Display searchable table with available models. 
     Table contents are read from a CSV file and passed into this function as a Pandas dataframe.
@@ -17,7 +17,7 @@ def select_seg_models(sj,df):
     INPUT: a dataframe containing the list of available models and their specifications
     OUTPUT: arrays of segmentation intances - masks - of each chosen model and for each selected image.
     """
-    sj.get_segmentation_models()
+    self.get_segmentation_models()
     display(data_table.DataTable(df, include_index=False, num_rows_per_page=10))
 
     all_names = df["Model Name"].astype(str).tolist()
@@ -53,7 +53,7 @@ def select_seg_models(sj,df):
     def _apply_selection(run_now=False):
         selected = set(sel.value)
 
-        sj.model_checkboxes = {
+        self.model_checkboxes = {
             name: widgets.Checkbox(value=(name in selected), indent=False, layout=Layout(width="1px", height="1px"))
             for name in all_names
         }
@@ -65,8 +65,8 @@ def select_seg_models(sj,df):
                 print("  •", n)
 
         if run_now:
-            sj.select_segmentation_models()
-            sj.run_all_chosen_models()
+            self.select_segmentation_models()
+            self.run_all_chosen_models()
 
     def on_apply_clicked(_):
         _apply_selection(run_now=False)
@@ -87,7 +87,7 @@ def select_seg_models(sj,df):
     
 
 
-def draw_seg_inst_outlines(ax, inst_labels, color="yellow", lw=1.5):
+def draw_seg_inst_outlines(self,ax, inst_labels, color="yellow", lw=1.5):
         inst = np.asarray(inst_labels)
         if inst.ndim == 3 and inst.shape[-1] == 2:  
             inst = inst[..., 0]
@@ -98,7 +98,7 @@ def draw_seg_inst_outlines(ax, inst_labels, color="yellow", lw=1.5):
             ax.contour(inst == lab, levels=[0.5], colors=[color], linewidths=lw)
 
 
-def compare_and_plot_segmentations(sj):
+def compare_and_plot_segmentations(self):
         """
         Modification of MIDAP's sj.compare_segmentations() method: includes contour and overlay plots.
         Also minor changes in plot organization.
@@ -115,8 +115,8 @@ def compare_and_plot_segmentations(sj):
         # ----------------------------------------------------------------
         # prepare bar-plot data (only once)
         # ----------------------------------------------------------------
-        if not hasattr(sj, "model_diff_scores"):
-            sj.model_diff_scores = sj.compute_model_diff_scores()
+        if not hasattr(self, "model_diff_scores"):
+            self.model_diff_scores = self.compute_model_diff_scores()
 
 
         def f(a, b, c):
@@ -142,13 +142,13 @@ def compare_and_plot_segmentations(sj):
             ax5 = fig.add_subplot(gs[3, :])
 
         # ---- raw image ----
-            raw = sj.imgs_cut[int(c)]
+            raw = self.imgs_cut[int(c)]
             ax0.imshow(raw, cmap="gray")
             ax0.set_xticks([]); ax0.set_yticks([])
             ax0.set_title("Raw image")
 
         # ---- instance seg – model 1 ----
-            inst_a = sj.dict_all_models_label[a][int(c)]
+            inst_a = self.dict_all_models_label[a][int(c)]
             inst_a = np.asarray(inst_a)
             if inst_a.ndim == 3 and inst_a.shape[-1] == 2:
                inst_a = inst_a[..., 0]
@@ -159,7 +159,7 @@ def compare_and_plot_segmentations(sj):
 
 
         # ---- instance seg – model 2 ----
-            inst_b = sj.dict_all_models_label[b][int(c)]
+            inst_b = self.dict_all_models_label[b][int(c)]
             inst_b = np.asarray(inst_b)
             if inst_b.ndim == 3 and inst_b.shape[-1] == 2:
                 inst_b = inst_b[..., 0]
@@ -170,23 +170,23 @@ def compare_and_plot_segmentations(sj):
 
 
         # ---- raw + seg overlay – model 1 ----
-            inst_a = sj.dict_all_models_label[a][int(c)]
+            inst_a = self.dict_all_models_label[a][int(c)]
             ax3.imshow(raw, cmap="gray")
-            draw_seg_inst_outlines(ax3, inst_a)
+            self.draw_seg_inst_outlines(ax3, inst_a)
             ax3.set_xticks([]); ax3.set_yticks([])
             ax3.set_title("Raw + Model 1 (outlines)")
 
 
         # ---- raw + seg overlay – model 2 ----
-            inst_b = sj.dict_all_models_label[b][int(c)]
+            inst_b = self.dict_all_models_label[b][int(c)]
             ax4.imshow(raw, cmap="gray")
-            draw_seg_inst_outlines(ax4, inst_b, color="cyan", lw=1.5)
+            self.draw_seg_inst_outlines(ax4, inst_b, color="cyan", lw=1.5)
             ax4.set_xticks([]); ax4.set_yticks([])
             ax4.set_title("Raw + Model 2 (outlines)")
 
         # ---- bar plot: mean disagreements + std dev ----
-            mdl_ids = list(sj.model_diff_scores.keys())
-            scores, std_devs = zip(*[sj.model_diff_scores[m] for m in mdl_ids])
+            mdl_ids = list(self.model_diff_scores.keys())
+            scores, std_devs = zip(*[self.model_diff_scores[m] for m in mdl_ids])
             short_mdl_ids = [f"{m[:5]}...{m.split('_')[-1]}" for m in mdl_ids]
 
             ax5.bar(range(len(mdl_ids)), scores, yerr=std_devs, capsize=5)
@@ -199,23 +199,23 @@ def compare_and_plot_segmentations(sj):
             plt.close(fig) # stop figure count increasing with every run
   
 
-        sj.output_seg_comp = interactive(
+        self.output_seg_comp = interactive(
             f,
             a=widgets.Dropdown(
-                options=sj.dict_all_models.keys(),
+                options=self.dict_all_models.keys(),
                 description="Model 1", layout=widgets.Layout(width="50%")
             ),
             b=widgets.Dropdown(
-                options=sj.dict_all_models.keys(),
+                options=self.dict_all_models.keys(),
                 description="Model 2", layout=widgets.Layout(width="50%")
             ),
             c=widgets.IntSlider(
                 min=0,
-                max=len(next(iter(sj.dict_all_models.values()))) - 1,
+                max=len(next(iter(self.dict_all_models.values()))) - 1,
                 description="Image ID"
             ),
         )
-        display(sj.output_seg_comp)
+        display(self.output_seg_comp)
 
 
 

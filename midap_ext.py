@@ -1,6 +1,6 @@
 import numpy as np
 import ipywidgets as widgets
-from ipywidgets import interactive,Layout
+from ipywidgets import interactive
 import matplotlib.pyplot as plt
 from IPython.display import display, clear_output
 from google.colab import data_table
@@ -22,7 +22,7 @@ def select_seg_models(self,df):
 
     all_names = df["Model Name"].astype(str).tolist()
 
-    search = widgets.Text(placeholder="filter models with ... (substring match)", layout=Layout(width="40%"))
+    search = widgets.Text(placeholder="filter models with ... (substring match)", layout=widgets.Layout(width="40%"))
     sel    = widgets.SelectMultiple(options=sorted(all_names), rows=12, description="Select")
     btn_all   = widgets.Button(description="Select all (filtered)", tootip='Select all models matching filter keywords')
     btn_clear  = widgets.Button(description="Clear", tooltip='Clear selection')
@@ -54,7 +54,7 @@ def select_seg_models(self,df):
         selected = set(sel.value)
 
         self.model_checkboxes = {
-            name: widgets.Checkbox(value=(name in selected), indent=False, layout=widjets.Layout(width="1px", height="1px"))
+            name: widgets.Checkbox(value=(name in selected), indent=False, layout=widgets.Layout(width="1px", height="1px"))
             for name in all_names
         }
 
@@ -225,7 +225,7 @@ def patch_SJ_class():
     """Attach extension methods to the SegmentationJupyter class (affects all instances)."""
     SegmentationJupyter.select_seg_models = select_seg_models
     SegmentationJupyter.compare_and_plot_segmentations = compare_and_plot_segmentations
-
+    SegmentationJupyter.draw_seg_inst_outlines = draw_seg_inst_outlines
 
 
 
@@ -241,6 +241,7 @@ except Exception as e:
 
 __all__ = [
     "select_seg_models",
+    "draw_seg_inst_outlines",
     "compare_and_plot_segmentations",
     "patch_SJ_class",
 ]

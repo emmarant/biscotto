@@ -10,6 +10,12 @@
       
       __All of the above are patched onto the midap SegmentationJupyter class__
 
+**24.08.2025**
+
+-v02
++ [X] add overlay comparison plots: contours of segmented instances are overplotted on raw image
++ [X] consider extending midap with all the new functions that are being introduced: extra plots, model lists, etc
+
 **21.08.2025**
 
 - v02

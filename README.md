@@ -1,10 +1,22 @@
+**25.08.2025**
+
+- v03
++ [X] CSV model table is downloaded localy in current colab session --> model list and specs read from it
++ [X] segmentation comparison plots now include overlay of raw with segmentation countours for each model
++ [X] a **midap_ext.py** file is downloaded localy in session and imported by default. Contains:
+      + function for listing models and assisting in selection of models
+      + function for drawing segmentation comparison plots (fully based on original midap functions with only some added tweaks)
+      + function for drawing contours of segmented instances
+      
+      __All of the above are patched onto the midap SegmentationJupyter class__
+
 **21.08.2025**
 
 - v02
 + [X] Chose Solution 1 (at least for now)
 + [X] Remove old selection process. Reshuffle code sections
 + [X] New tweaked comparison function, based on the one from midap
-+ [ ] separate new functions (comparison plotting, model listing) from the jupyter notebook itself. --> Should they live in the same user-accesible and editable repo, or hide it to avoid easy/accidental editing from users?
++ [X] separate new functions (comparison plotting, model listing) from the jupyter notebook itself. --> Should they live in the same user-accesible and editable repo, or hide it to avoid easy/accidental editing from users?
       
 
 - v01

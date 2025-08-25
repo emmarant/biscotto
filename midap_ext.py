@@ -1,4 +1,4 @@
-,import numpy as np
+import numpy as np
 import ipywidgets as widgets
 from ipywidgets import interactive
 import matplotlib.pyplot as plt

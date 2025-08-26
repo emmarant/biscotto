@@ -178,10 +178,11 @@ def compare_and_plot_segmentations(self):
             colors = ["black", "red", "blue", "green"]  # 0,1,2,3
             cmap = ListedColormap(colors)
 
-            ax1.imshow(comb, cmap=cmap, vmin=0, vmax=3)
-            ax1.colorbar(ticks=[0,1,2,3], label="Mask category")
+            im1 = ax1.imshow(comb, cmap=cmap, vmin=0, vmax=3)
             ax1.set_title("0=background, 1=model 1, 2=model 2, 3=overlap")
             ax1.axis("off")
+            cbar = fig.colorbar(im1, ax=ax1, ticks=[0,1,2,3], shrink=0.7)
+            cbar.set_label("Mask category")
            
         # ---- raw + seg overlay – model 1 ----
             #inst_a = self.dict_all_models_label[a][int(c)]

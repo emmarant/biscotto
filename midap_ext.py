@@ -9,6 +9,7 @@ from matplotlib.colors import ListedColormap
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
+
 def select_seg_models(self,df):
     """
     Display searchable table with available models. 

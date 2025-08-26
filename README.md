@@ -1,3 +1,7 @@
+**26.08.2025**
+- v04
++ [X] new plots added: segmentation overlap map
+
 **25.08.2025**
 
 - v03

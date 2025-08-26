@@ -272,7 +272,7 @@ def patch_SJ_class():
 # --- AUTO-PATCH ON IMPORT ---------------------------------------------------------
 
 try:
-    patch_SJ_class()  # make methods available as sj.draw_instance_outlines(), sj.compare_and_plot_segmentations()
+    patch_SJ_class()  
     print("[midap_ext] Patched SegmentationJupyter with extra methods.")
 except Exception as e:
     print(f"[midap_ext] Warning: could not patch class on import: {e}")

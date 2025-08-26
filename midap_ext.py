@@ -165,7 +165,7 @@ def compare_and_plot_segmentations(self):
             
             comb = inst_a_binary_mask + 2*inst_b_binary_mask
             #colors = ["black","#E69F00", "#56B4E9", "#F0E442"]
-            #colors = ["black", "#E69F00", "#56B4E9", "white"]  # 0,1,2,3
+            colors = ["black", "#E69F00", "#56B4E9", "white"]  # 0,1,2,3
             cmap = ListedColormap(colors)
 
             im1 = ax1.imshow(comb, cmap=cmap, vmin=0, vmax=3)

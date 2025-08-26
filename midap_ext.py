@@ -171,9 +171,9 @@ def compare_and_plot_segmentations(self):
             colors = ["black", "#E69F00", "#56B4E9", "white"]  # 0,1,2,3
             cmap = ListedColormap(colors)
             #bounds = np.arange(-0.5, 4.5, 1)      # [-0.5, 0.5, 1.5, 2.5, 3.5]
-            norm   = BoundaryNorm(bounds, cmap.N)
+            #norm   = BoundaryNorm(bounds, cmap.N)
             
-            im1 = ax1.imshow(comb, cmap=cmap, norm=norm, interpolation="nearest")
+            im1 = ax1.imshow(comb, cmap=cmap)
             ax1.axis("off")
             ax1.set_title("Black: Backgrd, Orange: Model1, Blue: Model2, White: Overlap")
             

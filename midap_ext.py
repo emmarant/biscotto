@@ -182,9 +182,8 @@ def compare_and_plot_segmentations(self):
 
             cbar.set_ticklabels(["Background", "Model 1", "Model 2", "Overlap"])
             cbar.outline.set_visible(True)
-            cbar.ax.tick_params(axis="x", pad=2, labelsize=8)
+            cbar.ax.tick_params(which="major", size=0, width=0, pad=2, labelsize=8)
             cbar.ax.tick_params(which="minor", top=False, bottom=False)
-            cbar.ax.tick_params(which="major", top=False, bottom=False)
 
             
 

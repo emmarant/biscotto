@@ -170,23 +170,20 @@ def compare_and_plot_segmentations(self):
             #colors = ["black","#E69F00", "#56B4E9", "#F0E442"]
             colors = ["black", "#E69F00", "#56B4E9", "white"]  # 0,1,2,3
             cmap = ListedColormap(colors)
-            bounds = np.arange(-0.5, 4.5, 1)      # [-0.5, 0.5, 1.5, 2.5, 3.5]
+            #bounds = np.arange(-0.5, 4.5, 1)      # [-0.5, 0.5, 1.5, 2.5, 3.5]
             norm   = BoundaryNorm(bounds, cmap.N)
             
             im1 = ax1.imshow(comb, cmap=cmap, norm=norm, interpolation="nearest")
             ax1.axis("off")
-            #ax1.set_title("Overlap map")
-
-            divider = make_axes_locatable(ax1)
-            cax = divider.append_axes("top", size="6%", pad=0.2)
+            ax1.set_title("Black: Backgrd, Orange: Model1, Blue: Model2, White: Overlap")
             
-            cbar = fig.colorbar(im1, cax=cax, ticks=[0,1,2,3],boundaries=bounds, orientation="horizontal", spacing="proportional")
+            #cbar = fig.colorbar(im1, cax=cax, ticks=[0,1,2,3],boundaries=bounds, orientation="horizontal", spacing="proportional")
             #cbar = fig.colorbar(im1, ax=ax1, ticks=[0,1,2,3], fraction=0.06, pad=0.02,boundaries=bounds, orientation="horizontal", location="top")
 
-            cbar.set_ticklabels(["Background", "Model 1", "Model 2", "Overlap"])
-            cbar.outline.set_visible(True)
-            cbar.ax.tick_params(which="major", size=0, width=0, pad=2, labelsize=8)
-            cbar.ax.tick_params(which="minor", top=False, bottom=False)
+            #cbar.set_ticklabels(["Background", "Model 1", "Model 2", "Overlap"])
+            #cbar.outline.set_visible(True)
+            #cbar.ax.tick_params(which="major", size=0, width=0, pad=2, labelsize=8)
+            #cbar.ax.tick_params(which="minor", top=False, bottom=False)
 
             
 

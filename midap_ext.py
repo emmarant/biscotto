@@ -6,6 +6,7 @@ from IPython.display import display, clear_output
 from google.colab import data_table
 from midap.midap_jupyter.segmentation_jupyter import SegmentationJupyter
 from matplotlib.colors import ListedColormap
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 def select_seg_models(self,df):
     """

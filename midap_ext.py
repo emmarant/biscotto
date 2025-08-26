@@ -169,9 +169,15 @@ def compare_and_plot_segmentations(self):
             cmap = ListedColormap(colors)
 
             im1 = ax1.imshow(comb, cmap=cmap, vmin=0, vmax=3)
-            #ax1.set_title("0=background, 1=model 1, 2=model 2, 3=overlap")
             ax1.axis("off")
-            cbar = fig.colorbar(im1, ax=ax1, ticks=[0,1,2,3], fraction=0.046, pad=0.08,orientation="horizontal")
+            
+            divider = make_axes_locatable(ax1)
+            cax = divider.append_axes("top", size="5%", pad=0.3)  
+
+            #cbar = fig.colorbar(im1, ax=ax1, ticks=[0,1,2,3], fraction=0.046, pad=0.08,orientation="horizontal")
+            cbar = fig.colorbar(im1, cax=cax,orientation="horizontal")
+            cbar.set_ticks([0.5, 1.5, 2.5, 3.5])
+
             cbar.set_ticklabels(["Background", "Model 1", "Model 2", "Overlap"])
             cbar.ax.xaxis.set_ticks_position("top")
             cbar.ax.xaxis.set_label_position("top")

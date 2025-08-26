@@ -177,7 +177,7 @@ def compare_and_plot_segmentations(self):
             divider = make_axes_locatable(ax1)
             #cax = divider.append_axes("top", size="5%", pad=0.3)  
             
-            cax = inset_axes(ax1,width="100%", height="6%", loc="upper center",borderpad=0.8)
+            cax = inset_axes(ax1,width="100%", height="6%", loc="upper center",borderpad=1.08)
             
             #cbar = fig.colorbar(im1, ax=ax1, ticks=[0,1,2,3], fraction=0.046, pad=0.08,orientation="horizontal")
             cbar = fig.colorbar(im1, cax=cax,orientation="horizontal")

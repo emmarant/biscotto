@@ -6,7 +6,7 @@ from IPython.display import display, clear_output
 from google.colab import data_table
 from midap.midap_jupyter.segmentation_jupyter import SegmentationJupyter
 from matplotlib.colors import ListedColormap
-from mpl_toolkits.axes_grid1 import make_axes_locatable
+from mpl_toolkits.axes_grid1 import make_axes_locatable, inset_axes
 
 def select_seg_models(self,df):
     """
@@ -173,11 +173,13 @@ def compare_and_plot_segmentations(self):
             ax1.axis("off")
             
             divider = make_axes_locatable(ax1)
-            cax = divider.append_axes("top", size="5%", pad=0.3)  
-
+            #cax = divider.append_axes("top", size="5%", pad=0.3)  
+            
+            cax = inset_axes(ax1,width="100%", height="6%", loc="upper center",borderpad=0.8)
+            
             #cbar = fig.colorbar(im1, ax=ax1, ticks=[0,1,2,3], fraction=0.046, pad=0.08,orientation="horizontal")
             cbar = fig.colorbar(im1, cax=cax,orientation="horizontal")
-            cbar.set_ticks([0.5, 1.5, 2.5, 3.5])
+            #cbar.set_ticks([0.5, 1.5, 2.5, 3.5])
 
             cbar.set_ticklabels(["Background", "Model 1", "Model 2", "Overlap"])
             cbar.ax.xaxis.set_ticks_position("top")

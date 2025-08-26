@@ -104,11 +104,12 @@ def compare_and_plot_segmentations(self):
         Also minor changes in plot organization.
         Visualises:
           1. raw image
-          2. instance segmentation of model-1
-          3. instance segmentation of model-2
-          4. overlay raw image + outlines of instance segmentation of model-1
-          5. overlay raw image + outlines of instance segmentation of model-2
-          6. bar-plot of the per-model mean semantic disagreement scores
+          2. composite image: segmentation overlap map
+          3. instance segmentation of model-1
+          4. instance segmentation of model-2
+          5. overlay raw image + outlines of instance segmentation of model-1
+          6. overlay raw image + outlines of instance segmentation of model-2
+          7. bar-plot of the per-model mean semantic disagreement scores
              with standard deviation as error bars.
         """
 
@@ -163,7 +164,7 @@ def compare_and_plot_segmentations(self):
             inst_b_binary_mask = (inst_b!=0).astype(np.uint8)
             
             comb = inst_a_binary_mask + 2*inst_b_binary_mask
-            colors = ["black", "red", "blue", "green"]  # 0,1,2,3
+            colors = ["black", "white", "gray", "yellow"]  # 0,1,2,3
             cmap = ListedColormap(colors)
 
             im1 = ax1.imshow(comb, cmap=cmap, vmin=0, vmax=3)

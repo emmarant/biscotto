@@ -173,8 +173,8 @@ def compare_and_plot_segmentations(self):
             ax1.axis("off")
             cbar = fig.colorbar(im1, ax=ax1, ticks=[0,1,2,3], fraction=0.046, pad=0.08,orientation="horizontal")
             cbar.set_ticklabels(["Background", "Model 1", "Model 2", "Overlap"])
-            cbar.ax1.xaxis.set_ticks_position("top")
-            cbar.ax1.xaxis.set_label_position("top")
+            cbar.xaxis.set_ticks_position("top")
+            cbar.xaxis.set_label_position("top")
             #cbar.set_label("Mask category")
 
         # ---- instance seg – model 1 ----

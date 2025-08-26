@@ -167,31 +167,15 @@ def compare_and_plot_segmentations(self):
             inst_b_binary_mask = (inst_b!=0).astype(np.uint8)
             
             comb = inst_a_binary_mask + 2*inst_b_binary_mask
-            #colors = ["black","#E69F00", "#56B4E9", "#F0E442"]
             colors = ["black", "#E69F00", "#56B4E9", "white"]  # 0,1,2,3
             cmap = ListedColormap(colors)
-            #bounds = np.arange(-0.5, 4.5, 1)      # [-0.5, 0.5, 1.5, 2.5, 3.5]
-            #norm   = BoundaryNorm(bounds, cmap.N)
             
             im1 = ax1.imshow(comb, cmap=cmap)
             ax1.axis("off")
-            ax1.set_title("Black: Backgrd, Orange: Model1, Blue: Model2, White: Overlap")
-            
-            #cbar = fig.colorbar(im1, cax=cax, ticks=[0,1,2,3],boundaries=bounds, orientation="horizontal", spacing="proportional")
-            #cbar = fig.colorbar(im1, ax=ax1, ticks=[0,1,2,3], fraction=0.06, pad=0.02,boundaries=bounds, orientation="horizontal", location="top")
-
-            #cbar.set_ticklabels(["Background", "Model 1", "Model 2", "Overlap"])
-            #cbar.outline.set_visible(True)
-            #cbar.ax.tick_params(which="major", size=0, width=0, pad=2, labelsize=8)
-            #cbar.ax.tick_params(which="minor", top=False, bottom=False)
-
+            ax1.set_title("Black: Backgrd, Orange: Model1 \n Blue: Model2, White: Overlap")
             
 
         # ---- instance seg – model 1 ----
-            #inst_a = self.dict_all_models_label[a][int(c)]
-            #inst_a = np.asarray(inst_a)
-            #if inst_a.ndim == 3 and inst_a.shape[-1] == 2:
-            #   inst_a = inst_a[..., 0]
             inst_a = np.ma.masked_where(inst_a == 0, inst_a)
             ax2.imshow(inst_a, cmap="tab20")
             ax2.set_xticks([]); ax2.set_yticks([])
@@ -199,10 +183,6 @@ def compare_and_plot_segmentations(self):
 
 
         # ---- instance seg – model 2 ----
-            #inst_b = self.dict_all_models_label[b][int(c)]
-            #inst_b = np.asarray(inst_b)
-            #if inst_b.ndim == 3 and inst_b.shape[-1] == 2:
-            #    inst_b = inst_b[..., 0]
             inst_b = np.ma.masked_where(inst_b == 0, inst_b)
             ax3.imshow(inst_b, cmap="tab20")
             ax3.set_xticks([]); ax3.set_yticks([])
@@ -210,7 +190,6 @@ def compare_and_plot_segmentations(self):
 
            
         # ---- raw + seg overlay – model 1 ----
-            #inst_a = self.dict_all_models_label[a][int(c)]
             ax4.imshow(raw, cmap="gray")
             self.draw_seg_inst_outlines(ax4, inst_a)
             ax4.set_xticks([]); ax4.set_yticks([])
@@ -218,7 +197,6 @@ def compare_and_plot_segmentations(self):
 
 
         # ---- raw + seg overlay – model 2 ----
-            #inst_b = self.dict_all_models_label[b][int(c)]
             ax5.imshow(raw, cmap="gray")
             self.draw_seg_inst_outlines(ax5, inst_b, color="cyan", lw=1.5)
             ax5.set_xticks([]); ax5.set_yticks([])
@@ -262,7 +240,7 @@ def compare_and_plot_segmentations(self):
 # --- PATCHERS ---------------------------------------------------------------------
 
 def patch_SJ_class():
-    """Attach extension methods to the SegmentationJupyter class (affects all instances)."""
+    """Attach extension methods to the SegmentationJupyter class.""
     SegmentationJupyter.select_seg_models = select_seg_models
     SegmentationJupyter.compare_and_plot_segmentations = compare_and_plot_segmentations
     SegmentationJupyter.draw_seg_inst_outlines = draw_seg_inst_outlines

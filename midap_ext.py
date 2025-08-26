@@ -148,33 +148,21 @@ def compare_and_plot_segmentations(self):
             ax0.set_xticks([]); ax0.set_yticks([])
             ax0.set_title("Raw image")
 
-
-        # ---- instance seg – model 1 ----
+            
+        # ---- composite segmentation image ----
             inst_a = self.dict_all_models_label[a][int(c)]
             inst_a = np.asarray(inst_a)
             if inst_a.ndim == 3 and inst_a.shape[-1] == 2:
-               inst_a = inst_a[..., 0]
-            inst_a = np.ma.masked_where(inst_a == 0, inst_a)
-            ax2.imshow(inst_a, cmap="tab20")
-            ax2.set_xticks([]); ax2.set_yticks([])
-            ax2.set_title("Model 1 (instance)")
-
-
-        # ---- instance seg – model 2 ----
+               inst_a = inst_a[..., 0]           
+            inst_a_binary_mask = (inst_a!=0).astype(np.uint8)
+            
             inst_b = self.dict_all_models_label[b][int(c)]
             inst_b = np.asarray(inst_b)
             if inst_b.ndim == 3 and inst_b.shape[-1] == 2:
                 inst_b = inst_b[..., 0]
-            inst_b = np.ma.masked_where(inst_b == 0, inst_b)
-            ax3.imshow(inst_b, cmap="tab20")
-            ax3.set_xticks([]); ax3.set_yticks([])
-            ax3.set_title("Model 2 (instance)")
-
-        # ---- composite segmentation image ----
-            inst_a_binary_mask = (inst_a!=0).astype(np.uint8)
             inst_b_binary_mask = (inst_b!=0).astype(np.uint8)
-            comb = inst_a_binary_mask + 2*inst_b_binary_mask
             
+            comb = inst_a_binary_mask + 2*inst_b_binary_mask
             colors = ["black", "red", "blue", "green"]  # 0,1,2,3
             cmap = ListedColormap(colors)
 
@@ -183,6 +171,28 @@ def compare_and_plot_segmentations(self):
             ax1.axis("off")
             cbar = fig.colorbar(im1, ax=ax1, ticks=[0,1,2,3], shrink=0.7)
             cbar.set_label("Mask category")
+
+        # ---- instance seg – model 1 ----
+            #inst_a = self.dict_all_models_label[a][int(c)]
+            #inst_a = np.asarray(inst_a)
+            #if inst_a.ndim == 3 and inst_a.shape[-1] == 2:
+            #   inst_a = inst_a[..., 0]
+            inst_a = np.ma.masked_where(inst_a == 0, inst_a)
+            ax2.imshow(inst_a, cmap="tab20")
+            ax2.set_xticks([]); ax2.set_yticks([])
+            ax2.set_title("Model 1 (instance)")
+
+
+        # ---- instance seg – model 2 ----
+            #inst_b = self.dict_all_models_label[b][int(c)]
+            #inst_b = np.asarray(inst_b)
+            #if inst_b.ndim == 3 and inst_b.shape[-1] == 2:
+            #    inst_b = inst_b[..., 0]
+            inst_b = np.ma.masked_where(inst_b == 0, inst_b)
+            ax3.imshow(inst_b, cmap="tab20")
+            ax3.set_xticks([]); ax3.set_yticks([])
+            ax3.set_title("Model 2 (instance)")
+
            
         # ---- raw + seg overlay – model 1 ----
             #inst_a = self.dict_all_models_label[a][int(c)]

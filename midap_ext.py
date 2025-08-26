@@ -176,9 +176,12 @@ def compare_and_plot_segmentations(self):
             im1 = ax1.imshow(comb, cmap=cmap, norm=norm, interpolation="nearest")
             ax1.axis("off")
             #ax1.set_title("Overlap map")
-                      
-            cbar = fig.colorbar(im1, ax=ax1, ticks=[0,1,2,3], fraction=0.06, pad=0.02,boundaries=bounds, orientation="horizontal", location="top")
-            #cbar = fig.colorbar(im1, cax=cax,orientation="horizontal")
+
+            divider = make_axes_locatable(ax1)
+            cax = divider.append_axes("top", size="6%", pad=0.2)
+            
+            cbar = fig.colorbar(im1, cax=cax, ticks=[0,1,2,3],boundaries=bounds, orientation="horizontal", spacing="proportional")
+            #cbar = fig.colorbar(im1, ax=ax1, ticks=[0,1,2,3], fraction=0.06, pad=0.02,boundaries=bounds, orientation="horizontal", location="top")
 
             cbar.set_ticklabels(["Background", "Model 1", "Model 2", "Overlap"])
             cbar.outline.set_visible(True)

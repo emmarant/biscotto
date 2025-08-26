@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 from IPython.display import display, clear_output
 from google.colab import data_table
 from midap.midap_jupyter.segmentation_jupyter import SegmentationJupyter
-from matplotlib.colors import ListedColormap
+from matplotlib.colors import ListedColormap, BoundaryNorm
 from mpl_toolkits.axes_grid1 import make_axes_locatable
-from mpl_toolkits.axes_grid1.inset_locator import inset_axes
+
 
 
 def select_seg_models(self,df):
@@ -170,23 +170,21 @@ def compare_and_plot_segmentations(self):
             #colors = ["black","#E69F00", "#56B4E9", "#F0E442"]
             colors = ["black", "#E69F00", "#56B4E9", "white"]  # 0,1,2,3
             cmap = ListedColormap(colors)
-
-            im1 = ax1.imshow(comb, cmap=cmap, vmin=0, vmax=3)
+            bounds = np.arange(-0.5, 4.5, 1)      # [-0.5, 0.5, 1.5, 2.5, 3.5]
+            norm   = BoundaryNorm(bounds, cmap.N)
+            
+            im1 = ax1.imshow(comb, cmap=cmap, norm=norm, interpolation="nearest")
             ax1.axis("off")
-            
-            divider = make_axes_locatable(ax1)
-            #cax = divider.append_axes("top", size="5%", pad=0.3)  
-            
-            cax = inset_axes(ax1,width="100%", height="6%", loc="upper center",borderpad=1.08)
-            
-            #cbar = fig.colorbar(im1, ax=ax1, ticks=[0,1,2,3], fraction=0.046, pad=0.08,orientation="horizontal")
-            cbar = fig.colorbar(im1, cax=cax,orientation="horizontal")
-            cbar.set_ticks([0, 1, 2, 3])
+            ax1.set_title("Overlap map")
+                      
+            cbar = fig.colorbar(im1, ax=ax1, ticks=[0,1,2,3], fraction=0.06, pad=0.08,boundaries=bounds, orientation="horizontal", location="top")
+            #cbar = fig.colorbar(im1, cax=cax,orientation="horizontal")
 
             cbar.set_ticklabels(["Background", "Model 1", "Model 2", "Overlap"])
-            cbar.ax.xaxis.set_ticks_position("top")
-            cbar.ax.xaxis.set_label_position("top")
-            #cbar.set_label("Mask category")
+            cbar.outline.set_visible(False)
+            cbar.ax.tick_params(axis="x", pad=2, labelsize=8)
+
+            
 
         # ---- instance seg – model 1 ----
             #inst_a = self.dict_all_models_label[a][int(c)]

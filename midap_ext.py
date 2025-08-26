@@ -177,7 +177,7 @@ def compare_and_plot_segmentations(self):
             ax1.axis("off")
             #ax1.set_title("Overlap map")
                       
-            cbar = fig.colorbar(im1, ax=ax1, ticks=[0,1,2,3], fraction=0.06, pad=0.08,boundaries=bounds, orientation="horizontal", location="top")
+            cbar = fig.colorbar(im1, ax=ax1, ticks=[0,1,2,3], fraction=0.06, pad=0.02,boundaries=bounds, orientation="horizontal", location="top")
             #cbar = fig.colorbar(im1, cax=cax,orientation="horizontal")
 
             cbar.set_ticklabels(["Background", "Model 1", "Model 2", "Overlap"])

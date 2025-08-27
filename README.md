@@ -1,3 +1,8 @@
+**27.08.2025**
+ - v04
+  
+🏁 **comparison subplot grid** fully updated and checked for multi-image performance. Happy with how it currently is. More tweaks possible (slider for contrast change, grayscale inversion option, etc)
+
 **26.08.2025**
 - v04
 + [X] new plots added: segmentation overlap map

@@ -2,6 +2,7 @@
  - v04
   
 🏁 **comparison subplot grid** fully updated and checked for multi-image performance. Happy with how it currently is. More tweaks possible (slider for contrast change, grayscale inversion option, etc)
++ [X] update buttons mouse-over text and looks (icons). Small tweaks in barplot. **Opinion**: barplot should be replaces by a two point plot or simply --> two numbers...
 
 **26.08.2025**
 - v04

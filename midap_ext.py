@@ -27,10 +27,10 @@ def select_seg_models(self,df):
 
     search = widgets.Text(placeholder="filter models with ... (substring match)", layout=widgets.Layout(width="40%"))
     sel    = widgets.SelectMultiple(options=sorted(all_names), rows=12, description="Select")
-    btn_all   = widgets.Button(description="Select all (filtered)", tootip='Select all models matching filter keywords')
-    btn_clear  = widgets.Button(description="Clear", tooltip='Clear selection')
-    btn_apply = widgets.Button(description="Apply selection",tooltip='Apply selected models')
-    btn_applyrun   = widgets.Button(description="Apply & run", tooltip='Apply selected models and run segmentation',button_style="primary")
+    btn_all   = widgets.Button(description="Select all (filtered)", tootip='Select all models matching filter keywords', icon="check-square")
+    btn_clear  = widgets.Button(description="Clear", tooltip='Clear selection',icon="trash")
+    btn_apply = widgets.Button(description="Apply selection",tooltip='Select models for later use',icon="tasks")
+    btn_applyrun   = widgets.Button(description="Apply & run", tooltip='Select models and run segmentation',icon="play-circle",button_style="primary")
     out = widgets.Output()
 
     def refresh_options(_=None):
@@ -219,9 +219,9 @@ def compare_and_plot_segmentations(self):
             scores, std_devs = zip(*[self.model_diff_scores[m] for m in mdl_ids])
             short_mdl_ids = [f"{m[:5]}...{m.split('_')[-1]}" for m in mdl_ids]
 
-            ax6.bar(range(len(mdl_ids)), scores, yerr=std_devs, capsize=5)
+            ax6.bar(range(len(mdl_ids)), scores, yerr=std_devs, width=0.35, capsize=8)
             ax6.set_xticks(range(len(mdl_ids)))
-            ax6.set_xticklabels(short_mdl_ids, rotation=90)
+            ax6.set_xticklabels(short_mdl_ids, rotation=45, ha="right")
             ax6.set_ylabel("Mean semantic difference")
             ax6.set_title("Per-model disagreement",fontsize=15)
 

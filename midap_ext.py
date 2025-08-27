@@ -257,7 +257,7 @@ def compare_and_plot_segmentations(self):
 # --- PATCHERS ---------------------------------------------------------------------
 
 def patch_SJ_class():
-    """Attach extension methods to the SegmentationJupyter class.""
+    """Attach extension methods to the SegmentationJupyter class."""
     SegmentationJupyter.select_seg_models = select_seg_models
     SegmentationJupyter.compare_and_plot_segmentations = compare_and_plot_segmentations
     SegmentationJupyter.draw_seg_inst_outlines = draw_seg_inst_outlines

@@ -7,3 +7,27 @@ model_weights_bact_phase_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,-,Omnipo
 model_weights_worm_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,-,Omnipose,worm,,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
 model_weights_worm_bact_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,-,Omnipose,bacteria,,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
 model_weights_cpsam,Cellpose-SAM,cellpose-sam,NaN,CellposeSegmentationJupyter,-,Cellpose+SAM,,,2D,clas/den/seg,cellpose+sam generalist,general cell bodies,blahblah,2,github.com/mouseland/cellpose,—
+midap_stardist_2D_paper_dsb2018,various,general model,StarDistSegmentation,StarDistSegmentationJupyter,2,StarDist,nuclei,fluorescence,1D,clas/den/seg,DSB2018 nuclei,star-convex nuclei,blah,1,github.com/stardist/stardist#pretrained-models, —
+midap_stardist_2D_versatile_fluo,various,general model,StarDistSegmentation,StarDistSegmentationJupyter,2,StarDist,nuclei,fluorescence,1D,clas/den/seg,StarDist 2D versatile (fluo),star-convex nuclei,blah,1,github.com/stardist/stardist#pretrained-models,—
+model_weights_nuclei,OmniPose,omni,NaN,OmniSegmentationJupyter,2,,nuclei,,1D,clas/den/seg,,,,1,,—
+model_weights_bact_fluor_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,34,Omnipose,nuclei,fluorescence,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
+model_weights_bact_phase_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,21,Omnipose,bacteria,phase/brightfield,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
+model_weights_worm_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,4,Omnipose,worm,,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
+model_weights_worm_bact_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,2,Omnipose,bacteria,,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
+model_weights_cpsam,Cellpose-SAM,cellpose-sam,NaN,CellposeSegmentationJupyter,17/4/23,Cellpose+SAM,,,2D,clas/den/seg,cellpose+sam generalist,general cell bodies,blahblah,2,github.com/mouseland/cellpose,—
+midap_stardist_2D_paper_dsb2018,various,general model,StarDistSegmentation,StarDistSegmentationJupyter,66,StarDist,nuclei,fluorescence,1D,clas/den/seg,DSB2018 nuclei,star-convex nuclei,blah,1,github.com/stardist/stardist#pretrained-models, —
+midap_stardist_2D_versatile_fluo,various,general model,StarDistSegmentation,StarDistSegmentationJupyter,5686,StarDist,nuclei,fluorescence,1D,clas/den/seg,StarDist 2D versatile (fluo),star-convex nuclei,blah,1,github.com/stardist/stardist#pretrained-models,—
+model_weights_nuclei,OmniPose,omni,NaN,OmniSegmentationJupyter,345,,nuclei,,1D,clas/den/seg,,,,1,,—
+model_weights_bact_fluor_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,23,Omnipose,nuclei,fluorescence,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
+model_weights_bact_phase_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,67,Omnipose,bacteria,phase/brightfield,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
+model_weights_worm_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,2,Omnipose,worm,,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
+model_weights_worm_bact_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,45,Omnipose,bacteria,,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
+model_weights_cpsam,Cellpose-SAM,cellpose-sam,NaN,CellposeSegmentationJupyter,7,Cellpose+SAM,,,2D,clas/den/seg,cellpose+sam generalist,general cell bodies,blahblah,2,github.com/mouseland/cellpose,—
+midap_stardist_2D_paper_dsb2018,various,general model,StarDistSegmentation,StarDistSegmentationJupyter,-,StarDist,nuclei,fluorescence,1D,clas/den/seg,DSB2018 nuclei,star-convex nuclei,blah,1,github.com/stardist/stardist#pretrained-models, —
+midap_stardist_2D_versatile_fluo,various,general model,StarDistSegmentation,StarDistSegmentationJupyter,-,StarDist,nuclei,fluorescence,1D,clas/den/seg,StarDist 2D versatile (fluo),star-convex nuclei,blah,1,github.com/stardist/stardist#pretrained-models,—
+model_weights_nuclei,OmniPose,omni,NaN,OmniSegmentationJupyter,-,,nuclei,,1D,clas/den/seg,,,,1,,—
+model_weights_bact_fluor_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,-,Omnipose,nuclei,fluorescence,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
+model_weights_bact_phase_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,-,Omnipose,bacteria,phase/brightfield,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
+model_weights_worm_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,-,Omnipose,worm,,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
+model_weights_worm_bact_omni,OmniPose,omni,NaN,OmniSegmentationJupyter,-,Omnipose,bacteria,,2D,clas/den/seg,omnipose corpus,bacteria/elongated cells,blah,2,github.com/kevinjohncutler/omnipose,—
+model_weights_cpsam,Cellpose-SAM,cellpose-sam,NaN,CellposeSegmentationJupyter,-,Cellpose+SAM,,,2D,clas/den/seg,cellpose+sam generalist,general cell bodies,blahblah,2,github.com/mouseland/cellpose,—

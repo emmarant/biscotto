@@ -256,6 +256,7 @@ def compare_and_plot_segmentations(self):
         display(controls, self.output_seg_comp)
 
 def run_all_chosen_models_timing(self):
+    import pandas as pd
     """
     Runs all pretrained models of chosen model types and records inference times.
     - self.model_inference_times: seconds per image (avg over imgs_cut)

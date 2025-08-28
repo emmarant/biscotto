@@ -1,4 +1,5 @@
 import numpy as np
+import time
 import ipywidgets as widgets
 from ipywidgets import interactive, interactive_output
 import matplotlib.pyplot as plt
@@ -7,6 +8,8 @@ from google.colab import data_table
 from midap.midap_jupyter.segmentation_jupyter import SegmentationJupyter
 from matplotlib.colors import ListedColormap
 from matplotlib.lines import Line2D
+import os, subprocess
+import tensorflow as tf
 
 
 
@@ -251,7 +254,74 @@ def compare_and_plot_segmentations(self):
 
         display(controls, self.output_seg_comp)
 
+def run_all_chosen_models_timing(self):
+    """
+    Runs all pretrained models of chosen model types and records inference times.
+    - self.model_inference_times: seconds per image (avg over imgs_cut)
+    - self.model_inference_times_total: total wall time per model (seconds)
+    Returns simple table with inference times and hardware info (CPU, GPU, etc)
+    """
+    self.dict_all_models = {}
+    self.dict_all_models_label = {}
+    self.model_inference_times = {}
+    self.model_inference_times_total = {}
 
+    try:
+        n_imgs = len(self.imgs_cut)
+    except Exception:
+        n_imgs = 1
+
+    rows = []
+
+    for nnt, models in self.all_chosen_seg_models.items():
+        self.select_segmentator(nnt)
+        for model in models:
+            model_name = "_".join((model).split("_")[2:])
+
+            key = f"{nnt}_{model}"
+            t0 = time.perf_counter()
+
+            self.pred.run_image_stack_jupyter(
+                self.imgs_cut, model_name, clean_border=False
+            )
+            elapsed = time.perf_counter() - t0
+
+            self.dict_all_models[key] = self.pred.seg_bin
+            self.dict_all_models_label[key] = self.pred.seg_label
+
+            self.model_inference_times_total[key] = elapsed
+            self.model_inference_times[key] = elapsed / max(1, n_imgs)
+
+            # ---- time inference summary table ---------
+            rows.append({
+                "Model": key,
+                "Images": n_imgs,
+                "Total time (s)": elapsed,
+                "Images / s": (n_imgs / elapsed) if elapsed > 0 else float("inf"),
+            })
+
+            # ------------------------------------------------------
+            # Free GPU memory that might still be held by the just
+            # finished predictor.  This is crucial when executing
+            # multiple models sequentially in the same notebook /
+            # Colab runtime to avoid out-of-memory crashes.
+            # ------------------------------------------------------
+            if hasattr(self.pred, "cleanup"):
+                self.pred.cleanup()
+    
+
+
+    print("\n\n\n\n\n==== Inference Time Summary ====\n")
+    gpu_available = tf.config.list_physical_devices('GPU')
+    if gpu_available:
+        for gpu in gpu_available:
+            print(f"  ==== Running on GPU: {gpu.name}, Type: {gpu.device_type} ====")
+    else:
+        cpu_info = !lscpu | grep "Model name"
+        print("==== Running on CPU:",cpu_info[0][12:].strip()," ====")
+    if rows:
+        df = pd.DataFrame(rows)
+        display(df)
 
 # --- PATCHERS ---------------------------------------------------------------------
 
@@ -260,7 +330,7 @@ def patch_SJ_class():
     SegmentationJupyter.select_seg_models = select_seg_models
     SegmentationJupyter.compare_and_plot_segmentations = compare_and_plot_segmentations
     SegmentationJupyter.draw_seg_inst_outlines = draw_seg_inst_outlines
-
+    SegmentationJupyter.run_all_chosen_models_timing = run_all_chosen_models_timing
 
 # --- AUTO-PATCH ON IMPORT ---------------------------------------------------------
 
@@ -277,4 +347,5 @@ __all__ = [
     "draw_seg_inst_outlines",
     "compare_and_plot_segmentations",
     "patch_SJ_class",
+    "run_all_chose_models_timing"
 ]

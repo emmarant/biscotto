@@ -327,11 +327,12 @@ def _print_runtime_env():
 
     # GPU
     try:
-        import tensorflow as tf
-        gpus = tf.config.list_physical_devices('GPU')
-        if gpus:
-            for g in gpus:
-                print(f"==== Running on GPU: {getattr(g, 'name', 'GPU')}, Type: {getattr(g, 'device_type','GPU')} ====")
+        gpu_name = subprocess.check_output(
+            ["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"],
+            stderr=subprocess.DEVNULL, text=True
+        ).strip()
+        if gpu_name:
+            print(f"==== Running on GPU: {gpu_name.splitlines()[0]} ====")
             return
     except Exception:
         pass

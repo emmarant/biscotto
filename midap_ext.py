@@ -72,7 +72,7 @@ def select_seg_models(self,df):
 
         if run_now:
             self.select_segmentation_models()
-            self.run_all_chosen_models()
+            self.run_all_chosen_models_timing()
 
     def on_apply_clicked(_):
         _apply_selection(run_now=False)

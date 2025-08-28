@@ -313,7 +313,7 @@ def run_all_chosen_models_timing(self):
 
     print("\n\n\n\n\n==== Inference Time Summary ====\n")
     if rows:
-    #    _print_runtime_env()
+        _print_runtime_env()
         df = pd.DataFrame(rows)
         display(df)
 
@@ -322,7 +322,7 @@ def _print_runtime_env():
     """Print a one-line summary of the compute device (TPU/GPU/CPU)."""
     # TPU
     if os.environ.get("COLAB_TPU_ADDR"):
-        print("==== Running on TPU ====")
+        print("____ Running on TPU ____")
         return
 
     # GPU
@@ -332,7 +332,7 @@ def _print_runtime_env():
             stderr=subprocess.DEVNULL, text=True
         ).strip()
         if gpu_name:
-            print(f"==== Running on GPU: {gpu_name.splitlines()[0]} ====")
+            print(f"____ Running on GPU: {gpu_name.splitlines()[0]} ____")
             return
     except Exception:
         pass
@@ -344,12 +344,12 @@ def _print_runtime_env():
             shell=True, text=True
         ).strip()
         if cpu:
-            print(f"==== Running on CPU: {cpu} ====")
+            print(f"____ Running on CPU: {cpu} ____")
             return
     except Exception:
         pass
 
-    print("==== Running on CPU ====")
+    print("____ Running on CPU ____")
 
 
 # --- PATCHERS ---------------------------------------------------------------------

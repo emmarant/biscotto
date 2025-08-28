@@ -1,6 +1,6 @@
 **28.08.2025**
 
--v04
+-v05
 
 + [X] add inference time (together with hardware info) as a choise criterion for the user. --> 
 + [X] extension of midap_ext.py with functions for running all models AND provide with inference time at completion of run

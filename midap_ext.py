@@ -312,15 +312,8 @@ def run_all_chosen_models_timing(self):
 
 
     print("\n\n\n\n\n==== Inference Time Summary ====\n")
-#    gpu_available = tf.config.list_physical_devices('GPU')
-#    if gpu_available:
-#        for gpu in gpu_available:
-#            print(f"  ==== Running on GPU: {gpu.name}, Type: {gpu.device_type} ====")
-#    else:
-#        cpu_info = lscpu | grep "Model name"
-#        print("==== Running on CPU:",cpu_info[0][12:].strip()," ====")
     if rows:
-        _print_runtime_env()
+    #    _print_runtime_env()
         df = pd.DataFrame(rows)
         display(df)
 

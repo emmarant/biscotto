@@ -317,7 +317,7 @@ def run_all_chosen_models_timing(self):
         for gpu in gpu_available:
             print(f"  ==== Running on GPU: {gpu.name}, Type: {gpu.device_type} ====")
     else:
-        cpu_info = !lscpu | grep "Model name"
+        cpu_info = lscpu | grep "Model name"
         print("==== Running on CPU:",cpu_info[0][12:].strip()," ====")
     if rows:
         df = pd.DataFrame(rows)

@@ -1,5 +1,6 @@
 import numpy as np
 import time
+import pandas as pd
 import ipywidgets as widgets
 from ipywidgets import interactive, interactive_output
 import matplotlib.pyplot as plt

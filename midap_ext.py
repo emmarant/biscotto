@@ -312,16 +312,51 @@ def run_all_chosen_models_timing(self):
 
 
     print("\n\n\n\n\n==== Inference Time Summary ====\n")
-    gpu_available = tf.config.list_physical_devices('GPU')
-    if gpu_available:
-        for gpu in gpu_available:
-            print(f"  ==== Running on GPU: {gpu.name}, Type: {gpu.device_type} ====")
-    else:
-        cpu_info = lscpu | grep "Model name"
-        print("==== Running on CPU:",cpu_info[0][12:].strip()," ====")
+#    gpu_available = tf.config.list_physical_devices('GPU')
+#    if gpu_available:
+#        for gpu in gpu_available:
+#            print(f"  ==== Running on GPU: {gpu.name}, Type: {gpu.device_type} ====")
+#    else:
+#        cpu_info = lscpu | grep "Model name"
+#        print("==== Running on CPU:",cpu_info[0][12:].strip()," ====")
     if rows:
+        _print_runtime_env()
         df = pd.DataFrame(rows)
         display(df)
+
+
+def _print_runtime_env():
+    """Print a one-line summary of the compute device (TPU/GPU/CPU)."""
+    # TPU
+    if os.environ.get("COLAB_TPU_ADDR"):
+        print("==== Running on TPU ====")
+        return
+
+    # GPU
+    try:
+        import tensorflow as tf
+        gpus = tf.config.list_physical_devices('GPU')
+        if gpus:
+            for g in gpus:
+                print(f"==== Running on GPU: {getattr(g, 'name', 'GPU')}, Type: {getattr(g, 'device_type','GPU')} ====")
+            return
+    except Exception:
+        pass
+
+    # CPU 
+    try:
+        cpu = subprocess.check_output(
+            "lscpu | grep 'Model name' | sed 's/.*: //'",
+            shell=True, text=True
+        ).strip()
+        if cpu:
+            print(f"==== Running on CPU: {cpu} ====")
+            return
+    except Exception:
+        pass
+
+    print("==== Running on CPU ====")
+
 
 # --- PATCHERS ---------------------------------------------------------------------
 

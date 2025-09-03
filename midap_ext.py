@@ -279,7 +279,7 @@ def run_all_chosen_models_timing(self):
         for model in models:
             model_name = "_".join((model).split("_")[2:])
 
-            key = f"{nnt}_{model}"
+            key = f"{model}"
             t0 = time.perf_counter()
 
             self.pred.run_image_stack_jupyter(

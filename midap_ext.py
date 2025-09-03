@@ -124,8 +124,8 @@ def compare_and_plot_segmentations(self):
         # ----------------------------------------------------------------
         # prepare bar-plot data (only once)
         # ----------------------------------------------------------------
-        if not hasattr(self, "model_diff_scores"):
-            self.model_diff_scores = self.compute_model_diff_scores()
+        #if not hasattr(self, "model_diff_scores"):
+        self.model_diff_scores = self.compute_model_diff_scores()
 
 
         def f(a, b, c):
@@ -295,7 +295,7 @@ def run_all_chosen_models_timing(self):
 
             # ---- time inference summary table ---------
             rows.append({
-                "Model": key,
+                "Model": model,
                 "Images": n_imgs,
                 "Total time (s)": elapsed,
                 "Images / s": (n_imgs / elapsed) if elapsed > 0 else float("inf"),
